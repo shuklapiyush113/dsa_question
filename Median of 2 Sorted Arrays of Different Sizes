@@ -1,0 +1,51 @@
+class GFG 
+{ 
+    static double medianOfArrays(int n, int m, int a[], int b[]) 
+    {
+        int i=0;
+        int j=0;
+        int med=0;
+        if((n+m)%2==0)
+         med=(n+m+2)/2;
+        else 
+         med =(n+m+1)/2;
+         int []arr=new int[med];
+         int k=0;
+        while(i<n && j<m &&k<med)
+        {
+            if(a[i]<=b[j])
+            {
+                arr[k]=a[i];
+                i++;
+                k++;
+            }
+            else
+            {
+               arr[k]=b[j];
+               j++;
+               k++;
+            }
+        }
+        while(i<n &&k<med)
+        {
+           arr[k]=a[i];
+           i++;
+           k++;
+        }
+        while(j<m &&k<med)
+        {
+           arr[k]=b[j];
+           j++;
+           k++;
+        }
+         if((n+m)%2==0)
+         {
+           double ans=(double)(((double)arr[k-1]+(double)arr[k-2])/2);
+           return ans;
+         }
+    return arr[k-1];    
+}
+}
+
+we are using merge function of the merge sort in order to reach the median element so that when we reach to middle elment if number of element is even we return the 
+average of both the middle elements else we return the last middle element;
