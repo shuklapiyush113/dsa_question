@@ -1,0 +1,29 @@
+class Solution{
+    //Function to partition the array around the range such 
+    //that array is divided into three parts.
+    public void threeWayPartition(int arr[], int a, int b)
+    {
+     int l=0;
+     int r=arr.length-1;
+     for(int i=0;i<=r;i++)
+     {
+         if(arr[i]<a)
+         {
+             int temp=arr[i];
+             arr[i]=arr[l];
+             arr[l]=temp;
+             l++;
+         }
+         else if(arr[i]>b)
+         {
+             int temp=arr[i];
+             arr[i]=arr[r];
+             arr[r]=temp;
+             r--;
+             i--;
+         }
+     }
+    }
+}
+we are adding element less than a to keft side and greater than b to the right side and the doing i-- so that we can again check whether the element we swapped is
+not greater than the given a  and by default the element in between will be come in between
