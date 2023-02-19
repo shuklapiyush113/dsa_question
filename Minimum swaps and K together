@@ -1,0 +1,44 @@
+class Complete{
+    
+   
+    // Function for finding maximum and value pair
+    public static int minSwap (int arr[], int n, int k) {
+          int count=0;
+          for(int i=0;i<n;i++)
+          {
+            if(arr[i]<=k)
+            count++;
+          }
+          int i=0;
+          int j=0;
+          int maxcount=0;
+          int ans=0;
+           while(i<n)
+          {
+            if((i-j+1)<=count)
+            {
+                if(arr[i]<=k)
+                maxcount++;
+                ans=Math.max(maxcount,ans);
+                i++;
+            }
+            else
+            {
+            // ans=Math.max(maxcount,ans);
+             if(arr[j]<=k)
+             {
+                maxcount--;
+             }
+             j++;
+            }
+          }
+          
+          return count-ans;
+    }
+    
+    
+}
+
+here we first find total number the elements less than k and then we use sliding window algorithm by making the window of the size of counted elements and then 
+we and chceck every window to get the window with maximum element and then we will subtract it from maximum count so that we will get the elemnts thst are needed 
+to be replaced or swapped from the gived winddow to get the required subarray
