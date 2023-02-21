@@ -1,0 +1,37 @@
+class Solution
+{
+    //Function to check if two strings are rotations of each other or not.
+    public static boolean areRotations(String s1, String s2 )
+    {
+       Queue<Character> q1=new LinkedList<>(); 
+       Queue<Character> q2=new LinkedList<>();
+       if(q1.size()!=q2.size())
+       return false;
+       for(int i=0;i<s1.length();i++)
+       {
+           q1.add(s1.charAt(i));
+       }
+       for(int i=0;i<s2.length();i++)
+       {
+           q2.add(s2.charAt(i));
+       }
+       int i=0;
+       while(i<s1.length())
+       {
+         if(q1.equals(q2))
+         return true;
+         char c=q2.poll();
+         q2.add(c);
+         i++;
+       }
+       return false;
+    }
+}
+in brute force you have to find the occurence of first element and check everytime that from that element rotation started or not 
+this is the efficient approach in this we take two queues and insert the charchets of both the given string into it then 
+-we will check that whether the two queues are equal or not
+if equal will return true 
+else 
+we will poll the peekk element of q2 and insert it on the back of the q2;
+and again repeat loop until the length of the q2;
+
