@@ -1,0 +1,28 @@
+class Solution{
+    String lookandsay(int n) {
+        if(n==1)
+        return "1";
+        
+        String x=lookandsay(n-1);
+        int count=1;
+        String S="";
+        for(int i=1;i<x.length();i++)
+        {
+            if(x.charAt(i)!=x.charAt(i-1))
+            {
+                S=S+count+x.charAt(i-1);
+                count=1;
+            }
+            else
+            {
+                count++;
+            }
+        }
+        S=S+count+x.charAt(x.length()-1);
+        return S;
+    }
+}
+
+in this problwm we will obtain the result through the recursion by calculating the lookandsay string for each generated string upto n. we perform recursion with base 
+n==1 at which wee return 1 as string as at 1. firstly we get the previous string and then count then count the occurence of each digit in the string and to the string
+S as S=S+countofthe_digit+digit upto the end of the previous string and then new the new string we will perform this kind of backtracking upto n.
