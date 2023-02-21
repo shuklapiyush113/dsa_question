@@ -1,0 +1,48 @@
+class Solution{
+    //boolean [][]dp=new boolean[][1001];
+    String longestPalin(String S){
+        char[] arr=S.toCharArray();
+        int ans=0;
+        int l=0;
+        int r=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=0;j<arr.length;j++){
+                if((j-i)>(r-l))
+                {
+                    if(isPalindrome(arr,i,j))
+                    {
+                        l=i;
+                        r=j;
+                    }
+                }
+            }
+        }
+        String Str="";
+        for(int i=l;i<=r;i++)
+        {
+            Str=Str+arr[i];
+        }
+       return Str;
+    }
+    
+    boolean isPalindrome(char[] arr, int i, int j)
+    {
+        int left=i;
+        int right=j;
+        
+        while(left<=right)
+        {
+            if(arr[left]!=arr[right])
+            return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+
+we will go for checking every possible subarray that whether it is palindrome or not but we will apply a condition before checking that the current answer length 
+is smaller or greater than the the subarray that we are going to check or not 
+if the current answer length is smaller we wil check is palindrome or not as it have possibility to maximise our answer
+else if curans length is greater than we do not need to check the current subarrayas it have no possiblity to maximise the current answer.
