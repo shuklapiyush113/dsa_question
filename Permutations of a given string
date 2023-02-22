@@ -1,0 +1,36 @@
+class Solution {
+   
+    public List<String> find_permutation(String S) {
+       char [] arr=S.toCharArray();
+       Arrays.sort(arr);
+       String Str=new String(arr);
+       ArrayList<String> list=new ArrayList<>();
+       permutation(Str,"",list);
+        
+        return list;
+    }
+    
+    void permutation(String str,String ans, ArrayList<String> list)
+    {
+        if(str.length()==1)
+        {
+            ans=ans+str;
+            if(!list.contains(ans))
+            list.add(ans);
+            return;
+        }
+        for(int i=0;i<str.length();i++)
+        {
+            String nans=ans+str.charAt(i);
+            String nstr=str.substring(0,i)+str.substring(i+1,str.length());
+            permutation(nstr,nans,list);
+        }
+    }  
+}
+
+the permutation (which is initially empty when called from the main function).
+If the length of the string is 0, print the permutation.
+Otherwise, run a loop from i = 0 to N:
+Consider S[i], to be a part of the permutation.
+Remove this from the current string and append it to the end of the permutation.
+Call the recursive function with the current string which does not contain S[i] and the current permutation.
