@@ -1,0 +1,25 @@
+class Solution {
+    public static  int maxSubStr(String str) {
+      int zcount=0;
+      int ocount=0;
+      int count=0;
+       for(int i=0;i<str.length();i++)
+       {
+          if(str.charAt(i)=='0')
+          ++zcount;
+          else
+          ++ocount;
+          
+          if(zcount==ocount)
+          count++;
+        }
+        if(zcount==ocount)
+        return count;
+      
+        
+      return -1;
+    }
+}
+
+the main task is to find all the string strating from index zero which have equal number of 0 and 1 and also till the ending of the string if ending of the string does
+does not have same number of 0 and 1 then return -1
