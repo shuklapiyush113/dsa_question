@@ -1,0 +1,33 @@
+class Solution {
+    int [][]dp;
+    public int editDistance(String s, String t) {
+        dp=new int[s.length()+10][t.length()+10];
+        for(int []arr:dp)
+        {
+            Arrays.fill(arr,-1);
+        }
+        return edit(s,t,0,0);
+    }
+    int edit(String s,String t,int i,int j)
+    {
+       
+        if(i==s.length())
+        return t.length()-j;
+        
+        if(j==t.length())
+        return s.length()-i;
+        
+        if(dp[i][j]!=-1)
+        return dp[i][j];
+        if(s.charAt(i)==t.charAt(j))
+         return dp[i+1][j+1]=edit(s,t,i+1,j+1);
+        
+        int insert=edit(s,t,i,j+1);
+        int replace=edit(s,t,i+1,j+1);
+        int del=edit(s,t,i+1,j);
+        
+        return dp[i][j]=1+Math.min(insert,Math.min(replace,del));
+    }
+}
+if i==s.length()
+that means we have to either add or delete the remaining words from other strings so we return the words that we need to add or delete from the string 
