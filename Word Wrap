@@ -1,0 +1,54 @@
+class Solution
+{
+    int dp[][];
+    public int solveWordWrap (int[] nums, int k)
+    {
+        dp=new int[nums.length+1][k+1];
+        for(int []arr:dp)
+        {
+            Arrays.fill(arr,-1);
+        }
+        return solve(nums,k,0,0);
+    }
+    
+    int solve(int[] arr, int k, int i, int fill)
+    {
+        if(i==arr.length)
+        {
+            return 0;
+        }
+        if(dp[i][fill]!=-1)
+        return dp[i][fill];
+        int choice1=Integer.MAX_VALUE;
+        if(fill+arr[i]<k)
+        {
+         if(fill==0)
+         choice1=solve(arr,k,i+1,arr[i]);
+         if(fill!=0)
+         choice1=solve(arr,k,i+1,fill+arr[i]+1);
+        }
+        int choice2=Integer.MAX_VALUE;
+        if(fill!=0)
+        choice2=(k-fill)*(k-fill)+solve(arr,k,i,0);
+        
+        return dp[i][fill]=Math.min(choice1,choice2);
+    }
+}
+Dekho Problem hard ni h Acc to question tumhe batana h ki  k words fit honge ki ni and jo spaces bach jayengi uska square calculate karna h 
+
+kuch ni karna ek dp array initialize kardo 
+
+maine global kar deya :) , then by the help of recurrsion check karo ki wo word pick ho sakta h ki ni and wo even fit hoga ki ni bache blank spaces me 
+
+5. ab 3 possibility hai 1-ya to wo word pick krke aage same line me aage badh jayega, 2-ya to uske pass next word ko rakhne ka space nahi bacha hoga 
+3-ya to wo uss word ko uss line me na fill krke next line me fill krna chahega;
+ab agar wo same line me fill krna chaah rha hai to use pahele check krna paadega ki space bacha hai fill krne ke liye ya nahi 
+agar bacha hai to 2 case hai 1-ki abhi line me koi word nahi add hua hai 2-ya to usme word add ho gya hai 
+agar nahi add hua line khali hai to usme word ko add krke aage bhej denge next ko bharne ke liye aur line me arrr[i] tak filll ho chuki bhej denge ;
+agar add ho chuka word hai aur word add krna hai to sath me ek space bhi add krna padega plus wo word aur aur peche se jitna fill hoke aaya hai wo bhi;
+fir aage ka word add hone ke liye recursion me bhej dena hai;
+
+ab 2nd possibility hai ki wo word ko add nahi krn chaah rha iss line me par wo tabhi aisa krega jab puri line kahli na ho agar khali hai to word add krna hi padega
+ab agar added hai aur ham current wala word next line me add krna chahte hai to cost calculate krr lenege bache hue spaces ki + uske sath next word ko fill hone ke 
+liye aage bhej denge fill ki value 0 krke  aur i ki value bina badhaye kyunki hamne kuch add nahi kiya hai;
+ aur ham dono possibility me jo minimum cost dega use return krr denge;
