@@ -1,0 +1,38 @@
+class Sol
+{
+    
+    public  int wordBreak(String A, ArrayList<String> B )
+    {
+        boolean br=Break(A,B,0,"");
+        return (br)?1:0;
+        
+    }
+    boolean  Break(String A,ArrayList<String> B, int i,String nw)
+    {
+        if(i==A.length()-1)
+        {
+            if(B.contains(nw+A.charAt(i)))
+            {
+                return true;
+            }
+            else 
+            return false;
+        }
+        boolean ch1=false;
+        boolean ch2=false;
+        if(!B.contains(nw+A.charAt(i)))
+        return Break(A,B,i+1,nw+A.charAt(i));
+        else{
+        ch1=Break(A,B,i+1,"");
+        ch2=Break(A,B,i+1,nw+A.charAt(i));
+        }
+        return ch1||ch2;
+    }
+}
+nw is a new string here there are three cases 1st if string doess not matches current substring then we have to simple check for next substring by adding
+current character in previous substring 
+second the substring is matched then there are two possibilities 
+1. may be this is the required substring and now we have to check next new substring and return the value  ;
+2. may be this is not the required substring as array can contains strings with different word have same starting letter along with additional letter then we have to
+go for checking the next substring by adding current character in previous substring  
+we will return the OR value of both the string 
