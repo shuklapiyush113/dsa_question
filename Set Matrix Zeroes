@@ -1,0 +1,38 @@
+class pair{
+    int i;
+    int j;
+    pair(int i,int j)
+    {
+        this.i=i;
+        this.j=j;
+    }
+}
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        Stack<pair> st=new Stack<>();
+        for(int i=0;i<matrix.length;i++)
+        {
+            for(int j=0;j<matrix[0].length;j++)
+            {
+                if(matrix[i][j]==0)
+                st.push(new pair(i,j));   
+            }
+        }
+
+        while(!st.isEmpty())
+        {
+            pair p=st.pop();
+            int row=p.i;
+            int col=p.j;
+             for(int i=0;i<matrix[0].length;i++)
+             {
+                 matrix[row][i]=0;
+             }
+             for(int i=0;i<matrix.length;i++)
+             {
+                 matrix[i][col]=0;
+             }
+        }
+    }
+}
+Console
