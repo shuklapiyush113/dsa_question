@@ -1,0 +1,41 @@
+class Solution {
+    static int checkCompressed(String S, String T) {
+        int digit=0;
+        int j=-1; //because when we have to check a string we have to add 1 to it;
+        for(int i=0;i<T.length();i++)
+        {
+            if(Character.isDigit(T.charAt(i)))
+            {
+                digit=digit*10+Character.getNumericValue(T.charAt(i));
+                if(i==T.length()-1)
+                {
+                   if(j+digit==S.length()-1) //as we only have to check last string right here so we do not need to add +1 as we reached the end 
+                   return 1;
+                   else
+                   return 0;
+                }
+            }
+            else
+            {
+                j=j+digit+1;
+                if(j<=S.length()-1)
+                {
+                    if(S.charAt(j)!=T.charAt(i))
+                    return 0;
+                }
+                else 
+                  return 0;
+                digit=0;
+            }
+        } 
+         if(j<S.length()-1)
+         return 0;
+        return 1;
+    }
+}
+
+here in this problem we will use greedy approach we  intialise digit with 0 then check then we check if the character is alohabet or number we will keep adding numner to the 
+digit till we will not get next character until when we will get the next charchter when we get the next alphabet we will jump till that position in the S string and firstly check 
+that after jumping whether j is less than equal to length of S or not if yes then we again check the char at j in s is eqal to charcter at i in T is not return false 
+there is one more posibility that the last charcter of T is number  in that we have to check that wheteher the j+digit is equals to the length of S or not it yes return 1 else 0
+now when we coime out one more possibility is there that whther we reached to last character of T but not S in this case return 0 else return 1
