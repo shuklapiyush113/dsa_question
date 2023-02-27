@@ -1,0 +1,41 @@
+class Solution 
+{ 
+    String printSequence(String S) 
+    { 
+        //  String []arr=new String[27];
+        //  int k=0;
+        //  int j=0;
+        //  for(int i=2;i<=9;i++)
+        //  {
+        //      String s=Integer.toString(i);
+        //      String p=s;
+        //      if(i!=7 && i!=9)
+        //          k=3;
+        //      else 
+        //         k=4;
+        //      while(k>0)
+        //      {
+        //         arr[j]=p;
+        //         p=p+s;
+        //         j++;
+        //         k--;
+        //      }
+        //  }
+        // arr[26]="0";   
+                         // OR
+        String []arr={"2","22","222","3","33","333","4","44","444",
+        "5","55","555","6","66","666","7","77","777","7777","8","88",
+        "888","9","99","999","9999","0"};
+         String ans="";
+         for(int i=0;i<S.length();i++)
+         {
+             char c=S.charAt(i);
+             int idx=(int)c-65;
+             if(idx<0)
+             ans=ans+arr[26];
+             else
+             ans=ans+arr[idx];
+         }
+         return ans;
+    }
+}
