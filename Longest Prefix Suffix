@@ -1,0 +1,38 @@
+class Solution {
+    int lps(String s) {
+        int len=0;
+        int []arr=new int[s.length()];
+        arr[0]=0;
+        int i=1;
+        while(i<s.length())
+        {
+            if(s.charAt(i)==s.charAt(len))
+            {
+                len++;
+                arr[i]=len;
+                i++;
+            }
+            else if(s.charAt(i)!=s.charAt(len)&& len!=0)
+            {
+                len=arr[len-1];
+            }
+            else
+            {
+                arr[i]=0;
+                i++;
+            }
+        }
+        return arr[i-1];
+    }
+}
+
+//here we used KMP algorithm's prefix suffix algorithm in which we maintain an array which have the value of the postion of next matching character from the bignninbg of the array 
+so for calculating  posistion of matching character of prefix with suffix-
+we declare array of length of string 
+then we put array[0]=0;
+then we start trversing string from i=1;
+We calculate values in lps[]. To do that, we keep track of the length of the longest prefix suffix value (we use len variable for this purpose) for the previous index
+We initialize lps[0] and len as 0
+If pat[len] and pat[i] match, we increment len by 1 and assign the incremented value to lps[i].
+If pat[i] and pat[len] do not match and len is not 0, we update len to lps[len-1]
+Example For the pattern “AAACAAAAAC”, lps[] is [0, 1, 2, 0, 1, 2, 3, 3, 3, 4] 
