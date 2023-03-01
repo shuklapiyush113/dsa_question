@@ -33,6 +33,6 @@ then we put array[0]=0;
 then we start trversing string from i=1;
 We calculate values in lps[]. To do that, we keep track of the length of the longest prefix suffix value (we use len variable for this purpose) for the previous index
 We initialize lps[0] and len as 0
-If pat[len] and pat[i] match, we increment len by 1 and assign the incremented value to lps[i].
+If pat[len] and pat[i] match, we increment len by 1 and assign the incremented value to the lps[i].
 If pat[i] and pat[len] do not match and len is not 0, we update len to lps[len-1]
 Example For the pattern “AAACAAAAAC”, lps[] is [0, 1, 2, 0, 1, 2, 3, 3, 3, 4] 
