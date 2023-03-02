@@ -1,0 +1,35 @@
+class Solution
+{
+    
+    long[][] dp;
+    long m=1000000007;
+    long countPS(String str)
+    {
+       dp=new long[str.length()+4][str.length()+4];
+       for(long []arr:dp)
+       Arrays.fill(arr,-1);
+       
+       return count(str,0,str.length()-1);
+       
+    }
+    //we will start checking from the right and left side of the string 
+    long count(String str,int i,int j)
+    {
+        if(i>j)
+        return 0;  // if i>j then it means the we traversed the whole array that means return 0 no more palindromes
+        if(i==j)    //if i==j that means we are at the same charcter and that will be included in the palindrome return 1 as it is palindrome in itself;
+        return 1; 
+        if(dp[i][j]!=-1)
+        return dp[i][j];
+        
+        if(str.charAt(i)==str.charAt(j))
+        return dp[i][j]=(1+count(str,i+1,j)+count(str,i,j-1))%m;  //when char matches means they are forming one palindrome and then will call the count with 
+                                                                    //ones increasing i and then decreasing j as because may be the next character can also be the matching character
+                                                                    to one of them and it's also forming a palindrome  
+        return dp[i][j]=((count(str,i+1,j)+count(str,i,j-1)-count(str,i+1,j-1))%m+m)%m;  //here we have doing the same above accept for the fact that the element 
+                                                                                        //will be added twice in the so we subtract element i+1,j+1
+    }
+    
+    
+    
+}
