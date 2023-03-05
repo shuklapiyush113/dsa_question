@@ -1,0 +1,13 @@
+class Solution {
+    public long coloredCells(int n) {
+        if(n==1)
+            return 1;
+        long ans=coloredCells(n-1)+(4*(n-1));
+        return ans;
+    }
+    
+}
+
+//when you will observe the patter carefully you wil find a recyrsive function
+current_colouredcells=4*(num-1)+previous_coloured cells
+everytime we add 4*(number-1) to previously current cell to get the  required number of cells
