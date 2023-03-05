@@ -1,0 +1,28 @@
+class Solution {
+    public int passThePillow(int n, int time) {
+        int i=1;
+        boolean r=false;
+        boolean l=false;
+        int j=1;
+        while(i<=time)
+        {
+            if(j==n)
+            {
+                l=true;
+                r=false;
+            }
+            if(j==1)
+            {
+                l=false;
+                r=true;
+            }
+            if(l)
+                j--;
+            if(r)
+                j++;
+            i++;
+        }
+        return j;
+    }
+}
+we will take two boolean variable to check the direction and reverse the direction accordingly of j value
