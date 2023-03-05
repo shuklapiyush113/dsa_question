@@ -1,0 +1,22 @@
+class Solution {
+    public int splitNum(int num) {
+        ArrayList<Integer> list=new ArrayList<>();
+        while(num>0)
+        {
+            int x=num%10;
+            list.add(x);
+            num=num/10;
+        }
+        Collections.sort(list);
+        int nums1=0;
+        int nums2=0;
+        for(int i=0;i<list.size();i++)
+        {
+            if(i%2==0)
+                nums1=(nums1*10)+list.get(i);
+            else
+                nums2=(nums2*10)+list.get(i);
+        }
+        return nums1+nums2;
+    }
+}
