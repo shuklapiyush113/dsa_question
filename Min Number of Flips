@@ -1,0 +1,33 @@
+class Solution {
+    public int minFlips(String S) {
+         int n=S.length();
+         int case1=0; //when we start filling with 1
+         int case2=0; //when we start filling with 0;
+         for(int i=0;i<n;i++)
+         {
+           char c=S.charAt(i);
+           if(i%2==0)
+           {
+               
+               if(c=='0')
+               case1++;
+               else
+               case2++;
+           }
+           else
+           {
+               if(c!='0')
+               case1++;
+               else
+               case2++;
+           }
+            
+         }
+        return Math.min(case1,case2);
+    }
+}
+
+//we know either we start filling elment with 0 
+//or we can strt filling elemnts with 1 
+// so when we start fillingn with at even posistion we have 0 and at odd there is 1 
+//when we start filling with 1 at even position and 0 at odd position 
