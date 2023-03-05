@@ -1,0 +1,47 @@
+class Solution
+{
+    // int dp[i][j][k]
+    
+    public int findOccurrence(char mat[][], String target)
+    {
+        int sum=0;
+      for(int i=0;i<mat.length;i++)
+      {
+          for(int j=0;j<mat[0].length;j++)
+          {
+              if(mat[i][j]==target.charAt(0))
+              sum+=count(mat,target,i,j,0);
+          }
+      }
+     return sum;  
+    }
+    
+    int count(char mat[][], String s, int i, int j,int idx)
+    {
+        if(i<0||i>=mat.length||j<0||j>=mat[0].length)
+        return 0;
+        
+        if(mat[i][j]=='*')
+        return 0;
+        
+        if(mat[i][j]!=s.charAt(idx))
+        return 0;
+        
+        if(mat[i][j]==s.charAt(idx) && idx==s.length()-1)
+        return 1;
+        
+        char c=mat[i][j];
+        mat[i][j]='*';
+        int sum=0;
+        sum+=count(mat,s,i,j-1,idx+1);
+        sum+=count(mat,s,i,j+1,idx+1);
+        sum+=count(mat,s,i-1,j,idx+1);
+        sum+=count(mat,s,i+1,j,idx+1);
+        mat[i][j]=c;
+        return sum;
+    }
+    
+}
+
+//for checking the visited element we will marks it with the * and when we will come back again to the given elemnt after performing recursion we will again make
+// the charcter ehich was given at that place previously;
