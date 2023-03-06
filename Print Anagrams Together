@@ -1,0 +1,31 @@
+class Solution {
+    String sorted(String str)
+    {
+        char [] arr=str.toCharArray();
+        Arrays.sort(arr);
+        String nwstr=new String(arr);
+        return nwstr;
+        
+    }
+    public List<List<String>> Anagrams(String[] string_list) {
+       
+        HashMap<String,ArrayList<String>> hs=new HashMap<>();
+        for(int i=0;i<string_list.length;i++)
+        {
+            String x=sorted(string_list[i]);
+            if(hs.containsKey(x))
+            {
+                hs.get(x).add(string_list[i]);
+            }
+            else
+            {
+            hs.put(x,new ArrayList<String>());
+            hs.get(x).add(string_list[i]);
+            }
+        }
+        List<List<String>> list=new ArrayList<>();
+       hs.forEach((k,v)->list.add(v));
+       
+    return list;
+    }
+}
