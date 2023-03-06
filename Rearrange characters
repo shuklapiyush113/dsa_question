@@ -1,0 +1,57 @@
+class Solution
+{
+public static String rearrangeCharacters(String str) {
+                int[] count=new int[26];
+                int n=str.length();
+                int max=0;
+                int idx=-1;
+                for(int i=0;i<n;i++)
+                {
+                    int x=(int)str.charAt(i)-(int)'a';
+                    count[x]+=1;
+                    if(max<count[x])
+                      {
+                        max=count[x];
+                        idx=x;
+                      }
+                }
+
+                if(max>((n+1)/2))
+                    return "-1";
+
+                count[idx]=0;
+                char[] arr=new char[n];
+
+                int i=0;
+                char c=(char)((int)'a'+idx);
+                for(int j=0;j<max;j++)
+                {
+                    arr[i]=c;
+                    i+=2;
+                }
+                if(i>=n)
+                    i=1;
+                for(int j=0;j<26;j++)
+                {
+                    char x=(char)((int)'a'+j);
+                    for(int k=0;k<count[j];k++)
+                    {
+                        arr[i]=x;
+                        i=i+2;
+                        if(i>=n)
+                            i=1;
+                    }
+                }
+                String ans=new String(arr);
+                return ans;
+            }
+
+}
+
+//first we will count the number of particular  charcters in the string and map it in a Array of size 26 accordign to alphabetical order;
+//then we will find maximum count charcter if it is greater than the half of the total length of string it means it is not possible to rearrange accordign to given 
+//scenario 
+//if not then we will first fill maximum count character at a even index making maxcount zero. then
+we will traverse the counting array 
+if even index are still remaining then first we will fill that with count of the given character than afer that 
+we fill the odd characters
