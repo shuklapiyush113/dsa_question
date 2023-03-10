@@ -1,0 +1,48 @@
+class Solution
+{
+    int transform (String A, String B)
+    {
+        int n=A.length();
+        int m=B.length();
+        int ans=0;
+        if(n!=m)
+        return -1;
+        int arr[]=new int[256];
+        int i=m-1;
+        int j=n-1;
+        int count=0;
+        while(i>=0 && j>=0)
+        {
+            char a=A.charAt(i);
+            char b=B.charAt(j);
+            if(a!=b)
+            {
+                arr[(int)a]++;
+                i--;
+                count++;
+            }
+            else
+            {
+              i--;
+              j--;
+            }
+        }
+        ans=count+ans;
+        while(j>=0)
+        {
+             char b=B.charAt(j);
+             if(arr[(int)b]==0)
+             return -1;
+             else if(arr[(int)b]>0)
+             arr[(int)b]--;
+             
+             j--;
+        }
+       return ans;
+    }
+}
+
+check from the back of new string that when you get the charcter in the given character  in the string when before you do not get the character count the characters 
+that you escaped as they neede to be removed to transform the string and also store the count of charcater in hash charcter array so that we can check that whenther
+there is any mismatching character or not in between both string when reached the end of the given string then while j>=for checking that wheteher all the characters 
+are same or not by using hash array count if not return 1 else return count 
