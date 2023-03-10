@@ -1,0 +1,57 @@
+ // Try to minimize the window i.e., check if
+                // any character is occurring more no. of times
+                // than its occurrence in pattern, if yes
+                // then remove it from starting and also remove
+                // the useless characters.
+                //use sliding window
+                //first store the disctinct values in  a one hash aaray counting the total distinct values 
+                //then traverse the pattern while count becomes zero and store count of char in another hash array by decreasing the count value for each dictinct element found 
+                //when count is zero start to check whether removing a charcter from back and check whenther after removing 
+                //the condition of all distinct character is fulfilled or not;
+                //if fullfilled then aagain remove from back otherwise add till conditon is not fullfilled
+class Solution {
+    public int findSubString( String str) {
+        int count=0;
+        int ans=Integer.MAX_VALUE;
+        int n=str.length();
+        char []key=new char[256];
+        for(int i=0;i<str.length();i++)
+        {
+            int c=(int)str.charAt(i);
+            if(key[c]<1)
+            {
+            key[c]++;
+            count++;
+            }
+        }
+        char skey[]=new char[256];
+        int i=0;
+        int j=0;
+        while(i<=n && j<n)    //performing sliding window 
+        {
+           if(count==0)
+           {
+              ans=Math.min((i-j),ans);
+              int c=(int)str.charAt(j);
+              j++;
+              if(--skey[c]>=key[c])
+              {
+                  ans=Math.min((i-j),ans);
+              }
+              else
+              count++;
+           }
+           else
+           {
+            if(i<n){
+            int c=(int)str.charAt(i);
+            skey[c]++;
+            if(skey[c]==key[c])
+            count--; 
+            }
+            i++;
+           }
+           }
+           return ans; 
+        }
+    }
