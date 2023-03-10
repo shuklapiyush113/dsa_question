@@ -1,0 +1,48 @@
+class Solution {
+    
+    
+    public ArrayList<String> genIp(String s) {
+      ArrayList<String> list=new ArrayList<>();
+      if(s.length()<4||s.length()>12)
+      {
+          return list;
+      }
+      int n=s.length();
+      
+      gen(s,s.length(),-1,"",1,list);
+      return list;
+}
+
+void gen(String S,int n, int idx, String nw, int sec,ArrayList<String> list)
+{
+      if(idx+1==n)
+        return;
+       String x="";
+      if(sec==4)
+      {
+        x=S.substring(idx+1,n);
+        int l=x.length();
+        if(l>1 && x.charAt(0)=='0')
+        return;
+        if(Integer.parseInt(x)>255)
+        return;
+        
+        list.add(nw+x);
+        return;
+      }
+     for(int i=idx+1;i<idx+4&&i<n;i++)
+     {
+        x=x+S.charAt(i);
+        int l=x.length();
+        if(Integer.parseInt(x)>255)
+        break;
+        if(l>1 && x.charAt(0)=='0')
+        break;
+        gen(S,n,i,(nw+x+'.'),sec+1,list);
+        
+     }
+        
+}
+}
+
+devided the ips into four section and performed backtracking for each section by checking whether the value is exceeding the the limit of(0-255) or not
