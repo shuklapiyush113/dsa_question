@@ -1,0 +1,31 @@
+class Solution {
+   public static int minChar(String str) {
+            int n = str.length();
+            int right = str.length() - 1;
+            char[] arr = str.toCharArray();
+            int[] lps = new int[str.length()+1];
+            int i = 1;
+            int len = 0;
+            lps[0]=0;
+            while (right >= 0) {
+                if (arr[len] == arr[right]) {
+                    len++;
+                    lps[i] = len;
+                    right--;
+                    i++;
+                } else {
+                    if (len != 0) {
+                        len = lps[len - 1];
+                    } else {
+                        lps[i] = 0;
+                        right--;
+                        i++;
+                    }
+                }
+
+            }
+            return arr.length - lps[lps.length - 1];
+        }
+}
+
+//use kmp's prefix =suffix method to find the patter from the back side
