@@ -1,0 +1,82 @@
+class Solution
+{
+    //Function to find the smallest window in the string s consisting
+    //of all the characters of string p.
+    public static String smallestWindow(String s, String p)
+    {
+          int n=s.length();
+          int count=p.length();
+          char key[]=new char[256];
+          for(int i=0;i<count;i++)
+          {
+              key[(int) p.charAt(i)]++;
+          }
+          char skey[]=new char[256];
+         int m=-1;
+         int k=-1;
+          int i=0;
+          int j=0;
+          while(i<n )
+          {
+              if(count!=0)
+              {
+                  int c=(int)s.charAt(i);
+                  if(key[c]>0 && skey[c]<key[c])
+                  {
+                    count--;        
+                  }
+                  skey[c]++;
+                  i++;
+              }
+              else 
+              break;
+              if(i==n-1&& count!=0)
+              return "-1";
+          }
+          m=i;
+          k=j;
+          while(i<=n&& j<n)
+          {
+              if(count!=0)
+              {
+                  if(i<n){
+                  int c=(int)s.charAt(i);
+                  skey[c]++;
+                  if(skey[c]==key[c])
+                  count--;
+                  }
+                  i++;
+              }
+              else
+              {
+                   int c=(int)s.charAt(j);
+                   skey[c]--;
+                   j++;
+                   if(skey[c]>=key[c])
+                   {
+                       if(i-j<m-k)
+                       {
+                           m=i;
+                           k=j;
+                       }
+                   }
+                   else
+                   count++;
+              }
+          }
+        return s.substring(k,m);
+    }
+    
+}
+    
+// Try to minimize the window i.e., check if
+                // any character is occurring more no. of times
+                // than its occurrence in pattern, if yes
+                // then remove it from starting and also remove
+                // the useless characters.
+                //use sliding window
+                //first store the disctinct values in  a one hash aaray counting the total distinct values 
+                //then traverse the pattern while count becomes zero and store count of char in another hash array by decreasing the count value for each dictinct element found 
+                //when count is zero start to check whether removing a charcter from back and check whenther after removing 
+                //the condition of all distinct character is fulfilled or not;
+                //if fullfilled then aagain remove from back otherwise add till conditon is not fullfilled
