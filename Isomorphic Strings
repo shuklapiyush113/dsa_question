@@ -1,0 +1,33 @@
+class Solution
+{
+    //Function to check if two strings are isomorphic.
+    public static boolean areIsomorphic(String str1,String str2)
+    {
+      if(str1.length()!=str2.length())
+      return false;
+      return check(str1,str2)&&check(str2,str1);
+    }
+   static  boolean check(String str1, String str2)
+    {
+      HashMap<Character,Character> hs=new HashMap<>();
+      for(int i=0;i<str1.length();i++)
+      {
+          char c=str1.charAt(i);
+          if(hs.containsKey(c))
+          {
+              if(hs.get(c)!=str2.charAt(i))
+              return false;
+          }
+          else
+          {
+              hs.put(c,str2.charAt(i));
+          }
+      }
+      return true;
+    }
+    }
+    //you have to check for both the strings that every character is mapped with only
+    //one character of the string alternatively as there is possibility that mqay be str1 is maaped with str2 \
+    //but str2 is not mapped one on one with str2;
+    //may be same value is mapped with two different character
+
