@@ -1,0 +1,26 @@
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+     ArrayList<Integer> list=new ArrayList<>();
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        boolean[] visited=new boolean[V];
+        visited[0]=true;
+        list.add(0);
+        dfs(0,adj,visited);
+        return list;
+    }
+    
+    void dfs(int cv, ArrayList<ArrayList<Integer>> adj, boolean[] visited )       //cv current vertex
+    {
+        
+        for(int i=0;i<adj.get(cv).size();i++)
+        {
+            int cur=adj.get(cv).get(i);
+            if(!visited[cur])
+            {
+                visited[cur]=true;
+                list.add(cur);
+                dfs(cur,adj,visited);
+            }
+        }
+    }
+}
